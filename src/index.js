@@ -7,24 +7,24 @@ function expressionCalculator(expr) {
   function delition(expr){
     if(/\d/.test(expr)){
       while(/\//.test(expr)){
-        let arr=expr.match(/(\-?\d+\.\d+|\-?\d+)\/(\-?\d+\.\d+|\-?\d+)/);
+        let arr=expr.match(/(\d+\.\d+|\d+)\/(\-?\d+\.\d+|\-?\d+)/);
         if(arr[2]==0){
         throw "TypeError: Division by zero.";
      }
-        expr=expr.replace(/(\-?\d+\.\d+|\-?\d+)\/(\-?\d+\.\d+|\-?\d+)/,Number(arr[1])/Number(arr[2]))
+        expr=expr.replace(/(\d+\.\d+|\d+)\/(\-?\d+\.\d+|\-?\d+)/,Number(arr[1])/Number(arr[2]))
       }
     }
-    return expr
+    return expr.replace(/\-\-/g,'+')
   }
   function mult(expr){
     if(/\d/.test(expr)){
       while(/\*/.test(expr)){
-        let arr=expr.match(/(\-?\d+\.\d+|\-?\d+)\*(\-?\d+\.\d+|\-?\d+)/);
-        expr=expr.replace(/(\-?\d+\.\d+|\-?\d+)\*(\-?\d+\.\d+|\-?\d+)/,Number(arr[1])*Number(arr[2]))
+        let arr=expr.match(/(\d+\.\d+|\d+)\*(\-?\d+\.\d+|\-?\d+)/);
+        expr=expr.replace(/(\d+\.\d+|\d+)\*(\-?\d+\.\d+|\-?\d+)/,Number(arr[1])*Number(arr[2]))
     }
   }
   
-  return expr
+  return expr.replace(/\-\-/g,'+')
   }
   function sum(expr){
     if(/\d/.test(expr)){
